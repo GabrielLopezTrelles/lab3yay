@@ -48,7 +48,7 @@ if user_input:
         error_message = str(e).lower()
 
         if "quota" in error_message or "rate" in error_message or "429" in error_message:
-            assistant_reply = "Error. I'm getting too many requests right now. Please wait a moment and try again!"
+            assistant_reply = f"FULL ERROR: {e}"
         elif "safety" in error_message or "blocked" in error_message:
             assistant_reply = "Error. I can't respond to that topic. Try asking me something else about music!"
         else:
