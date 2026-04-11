@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 for m in genai.list_models():
     if "generateContent" in m.supported_generation_methods:
-        print(m.name)    
+        st.write(m.name)    
 '''
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
