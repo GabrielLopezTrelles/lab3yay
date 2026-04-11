@@ -1,10 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
 
-for m in genai.list_models():
-    if "generateContent" in m.supported_generation_methods:
-        st.write(m.name)    
-'''
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
 key = st.secrets["key"]
@@ -19,7 +15,7 @@ if "chat_history" not in st.session_state:
 
 if "chat_session" not in st.session_state:
     model = genai.GenerativeModel(
-        model_name="gemini-pro",
+        model_name="gemini-2.5-flash",
         system_instruction="""You are Music Chatbot, an expert AI assistant who knows 
         everything about music. You can discuss artists, albums, song history, genres, 
         music theory, concert experiences, music recommendations, and the music industry. 
@@ -80,4 +76,3 @@ if st.session_state.chat_history:
         )
         st.session_state.chat_session = model.start_chat(history=[])
         st.rerun()
-'''
