@@ -1,6 +1,12 @@
 import streamlit as st
-import google.generativeai as genai
-
+import sys
+import subprocess
+try:
+    import google.generativeai as genai
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "google-generativeai"])
+    import google.generativeai as genai
+    
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
 key = st.secrets["key"]
