@@ -1,6 +1,10 @@
 import streamlit as st
 import google.generativeai as genai
-    
+
+for m in genai.list_models():
+    if "generateContent" in m.supported_generation_methods:
+        print(m.name)    
+'''
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
 key = st.secrets["key"]
@@ -76,3 +80,4 @@ if st.session_state.chat_history:
         )
         st.session_state.chat_session = model.start_chat(history=[])
         st.rerun()
+'''
