@@ -15,7 +15,7 @@ if "chat_history" not in st.session_state:
 
 if "chat_session" not in st.session_state:
     model = genai.GenerativeModel(
-        mmodel_name="gemini-1.5-pro",
+        model_name="gemini-1.5-pro",
         system_instruction="""You are Music Chatbot, an expert AI assistant who knows 
         everything about music. You can discuss artists, albums, song history, genres, 
         music theory, concert experiences, music recommendations, and the music industry. 
