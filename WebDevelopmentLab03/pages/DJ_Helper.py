@@ -61,13 +61,13 @@ with st.form("survey_form"):
         for i in data2["similartracks"]["track"]:
             if float(i["match"]) <= 1 and float(i["match"]) >= .5:
                 if boolExpressionArtist and not boolExpressionPlays:
-                    if i["artist"]["name"] != inputArtist:
+                    if i["artist"]["name"].lower() != inputArtist.lower():
                         similarSongList.append(i["name"])
                 elif not boolExpressionArtist and boolExpressionPlays:
                     if int(i["playcount"]) >= 100000:
                         similarSongList.append(i["name"])
                 elif boolExpressionArtist and boolExpressionPlays:
-                    if i["artist"]["name"] != inputArtist:
+                    if i["artist"]["name"].lower() != inputArtist.lower():
                         if int(i["playcount"]) >= 100000:
                             similarSongList.append(i["name"])
             else:
