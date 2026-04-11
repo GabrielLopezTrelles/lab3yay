@@ -3,7 +3,9 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
-genai.configure(api_key=st.secrets["api_key"])
+key = st.secrets["key"]
+
+genai.configure(api_key = key)
 
 st.title("Music Chatbot")
 st.markdown("Ask me anything about music. Your question can be about artists, genres, history, recommendations, and more!")
