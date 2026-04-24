@@ -12,42 +12,46 @@ baseUrl = 'http://ws.audioscrobbler.com/2.0'
 apiKey = "a28edaddcd62a1f9f8ae8100299fbc3b"
 
 
-with st.form("survey_form"):
+with st.form("song_search"):
     theSong = st.text_input("Search: What song do you want to mix?", value=None)
     theArtist = st.text_input("Input the artist! (optional, must be accurate)", value=None)
+    submitted = st.form_submit_button("Submit Data")
+    if submitted:
+        def confirmSong(theArtist, theSong):
+            addBaseArtisturl = baseUrl + "method=track.search"
+            trackk = theSong.replace(" ", "+")
+            artistt = theArtist.replace(" ", "+")
+            if artistt != None:
+                endpoint3 = addBaseArtisturl + "&track=" + trackk + "&artist=" + artistt + "&api_key=" + apiKey + "&format=json"
+            else:
+                endpoint3 = addBaseArtisturl + "&track=" + trackk + "&api_key=" + apiKey + "&format=json"
+            response3 = requests.get(endpoint3)
+            data = response3.json()
+            confirmSongList = []
+            try:
+                for d in data["trackmatches"]["track"]:
+                    if len(confirmSongList) < 5:
+                        confirmSongList.append(f"{d["name"]} by {d["artist"]}")
+                    else:
+                        break
+                
+                for num in range(len(confirmSongList)):
+                    if st.button(confirmSongList[num], type="tertiary"):
+                        st.write(f"You chose {confirmSongList[num]}!")
+                        framework = data["trackmatches"]["track"][num]
+                    else:
+                        st.write("Choose a song!")
+                        framework = None
+                return framework
+            except:
+                "An error occured. Try entering a new song or artist name."
+
+with st.form("survey_form"):
     boolExpressionPlays = st.checkbox("Only the hits")
     boolExpressionArtist = st.checkbox("Show songs from other artists")
 
     ###Confirm Song Function:
 
-    def confirmSong(theArtist, theSong):
-        addBaseArtisturl = baseUrl + "method=track.search"
-        trackk = theSong.replace(" ", "+")
-        artistt = theArtist.replace(" ", "+")
-        if artistt != None:
-            endpoint3 = addBaseArtisturl + "&track=" + trackk + "&artist=" + artistt + "&api_key=" + apiKey + "&format=json"
-        else:
-            endpoint3 = addBaseArtisturl + "&track=" + trackk + "&api_key=" + apiKey + "&format=json"
-        response3 = requests.get(endpoint3)
-        data = response3.json()
-        confirmSongList = []
-        try:
-            for d in data["trackmatches"]["track"]:
-                if len(confirmSongList) < 5:
-                    confirmSongList.append(f"{d["name"]} by {d["artist"]}")
-                else:
-                    break
-            
-            for num in range(len(confirmSongList)):
-                if st.button(confirmSongList[num], type="tertiary"):
-                    st.write(f"You chose {confirmSongList[num]}!")
-                    framework = data["trackmatches"]["track"][num]
-                else:
-                    st.write("Choose a song!")
-                    framework = None
-            return framework
-        except:
-            "An error occured. Try entering a new song or artist name."
 
     inputArtist = framework["artist"]
     inputSong = framework["name"]
