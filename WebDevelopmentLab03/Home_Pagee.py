@@ -9,6 +9,7 @@ st.title("Web Development Lab03")
 st.header("CS 1301")
 st.subheader("Web Development - Section A")
 st.subheader("Elijah Jeffres, Gabriel Lopez Trelles")
+st.image("images/Bad_Bunny.png", width=500)
 
 
 # Introduction
