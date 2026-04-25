@@ -23,7 +23,6 @@ genre = st.selectbox("What genre of music do you enjoy?", [
      "Melodic Death Metal","downtempo","emo","post-hardcore","doom metal","Psychedelic Rock","synthpop","oldies","Love","00s","Gothic Metal",
      "cover","noise","dark ambient","idm","Grunge","guitar","jazz fusion","Gothic","pop rock","britpop","screamo","swedish","favorites","lounge",
      "Mellow","Nu Metal","grindcore","j-pop"
-]
 ], index=None)
 
 def topArtists(country, genre):
