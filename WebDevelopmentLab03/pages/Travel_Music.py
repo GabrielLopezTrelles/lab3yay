@@ -40,6 +40,10 @@ def topArtists(country, genre):
         for a in data1["topartists"]["artist"]:
             countryGetArtist.append(a["name"])
 
+        urlGenre = genre.replace(" ", "+")
+        addBaseGenreurl = baseUrl + "/?method=tag.gettopartists=" + urlGenre
+        endpoint2 = addBaseGenre
+
         
         use geo.getTopArtists and tag.getTopArtists
 

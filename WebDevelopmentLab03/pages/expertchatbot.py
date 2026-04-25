@@ -49,13 +49,13 @@ def formatArtists(artists):
         formatted.append(f"{name} - Website: {url}")
     return "\n".join(formatted)
 
-st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
+st.set_page_config(page_title="Expert Music Chatbot", page_icon="", layout="wide")
 
 key = st.secrets["key"]
 
 genai.configure(api_key = key)
 
-st.title("Music Chatbot")
+st.title("Expert Music Chatbot")
 st.markdown("Ask me anything about music. Your question can be about artists, genres, history, recommendations, and more!")
 
 if "chat_history" not in st.session_state:
