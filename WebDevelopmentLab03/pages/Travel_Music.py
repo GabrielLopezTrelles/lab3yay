@@ -17,7 +17,7 @@ country = st.selectbox("What country are you visiting?", [
 genre = st.selectbox("What genre of music do you enjoy?", [], index=None)
 
 try:
-    response = model.generate_content(f"Write about a country") #enter your prompt here!
+    response = model.generate_content(f"Write ab") #enter your prompt here!
     st.write(response.text)
 
 except Exception as e:
