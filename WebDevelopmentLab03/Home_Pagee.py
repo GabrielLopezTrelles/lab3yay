@@ -21,8 +21,9 @@ st.subheader("Elijah Jeffres, Gabriel Lopez Trelles")
 st.write("""
 Welcome to our Streamlit Web Development Lab03 app! You can navigate between the pages using the sidebar to the left. The following pages are:
 
-1. **DJ Helper**: Are you a DJ in dire need of help? Our DJ Helper generates similar songs so you can find that perfect mix!
-2. **DJ Chatbot**: Chat with our AI assistant about music!
+1. **DJ Chatbot**: Chat with our AI assistant about music!
+2. **DJ Helper**: Are you a DJ in dire need of help? Our DJ Helper generates similar songs so you can find that perfect mix!
+3.
 
 """)
 
