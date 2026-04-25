@@ -91,8 +91,8 @@ if user_input:
     })
 
     try:
-        relevant = find_relevant_artists(st.session_state.api_data, user_input)
-        api_context = format_artists(relevant)
+        relevant = findRelevantArtists(st.session_state.api_data, user_input)
+        api_context = formatArtists(relevant)
 
         full_prompt = f"""
         You are a music chatbot. Use this external data when relevant:
