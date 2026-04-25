@@ -37,7 +37,10 @@ with st.form("survey_form"):
             similarArtistList = []
             for i in data1["similarartists"]["artist"]:
                 if float(i["match"]) <= 1 and float(i["match"]) >= .5:
-                    similarArtistList.append(i["name"])
+                    if len(similarArtistList) < 5:
+                        similarArtistList.append(i["name"])
+                    else:
+                        break
             return similarArtistList
         
         except:
@@ -59,27 +62,33 @@ with st.form("survey_form"):
         data2 = response2.json()
         similarSongList = []
         for i in data2["similartracks"]["track"]:
-            if float(i["match"]) <= 1 and float(i["match"]) >= .5:
-                if boolExpressionArtist and not boolExpressionPlays:
-                    if i["artist"]["name"] != inputArtist:
-                        similarSongList.append(i["name"])
-                elif not boolExpressionArtist and boolExpressionPlays:
-                    if int(i["playcount"]) >= 100000:
-                        similarSongList.append(i["name"])
-                elif boolExpressionArtist and boolExpressionPlays:
-                    if i["artist"]["name"] != inputArtist:
+            if len(similarSongList) < 5:
+                if float(i["match"]) <= 1 and float(i["match"]) >= .5:
+                    if boolExpressionArtist and not boolExpressionPlays:
+                        if i["artist"]["name"] != inputArtist:
+                            similarSongList.append(i["name"])
+                    elif not boolExpressionArtist and boolExpressionPlays:
                         if int(i["playcount"]) >= 100000:
                             similarSongList.append(i["name"])
+                    elif boolExpressionArtist and boolExpressionPlays:
+                        if i["artist"]["name"] != inputArtist:
+                            if int(i["playcount"]) >= 100000:
+                                similarSongList.append(i["name"])
+                else:
+                    similarSongList.append(i["name"])
             else:
-                similarSongList.append(i["name"])         
+                break         
         return similarSongList
         
     submitted = st.form_submit_button("Submit Data")
     if submitted:
-        st.write("**You may like these artists:**")
-        for a in getSimilarArtists(inputArtist):
-            st.write(f"{a}")
-        st.write("\n**You may like these songs:**")
-        for p in getSimilarSongs(inputSong, inputArtist):
-            st.write(f"{p}")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("**You may like these artists:**")
+            for a in getSimilarArtists(inputArtist):
+                st.write(f"{a}")
+        with col2:
+            st.write("\n**You may like these songs:**")
+            for p in getSimilarSongs(inputSong, inputArtist):
+                st.write(f"{p}")
 
