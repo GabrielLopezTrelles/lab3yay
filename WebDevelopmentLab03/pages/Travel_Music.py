@@ -60,7 +60,7 @@ with st.form("survey_form"):
         try:
             model = genai.GenerativeModel(model_name="gemini-2.5-flash",
         system_instruction=f"Write a guide to listening to music in the genre {genre} while on vacation in the country {country}. If possible, recommend these top artists to listen to and why based on this API data: {topArtists(country, genre)}")
-            response = model.generate_content()
+            response = model.generate_content(f"Write a guide to listening to music in the genre {genre} while on vacation in the country {country}. If possible, recommend these top artists to listen to and why based on this API data: {topArtists(country, genre)}")
             st.write(response.text)
 
         except Exception as e:
