@@ -107,7 +107,7 @@ with st.form("survey_form"):
         
     submitted = st.form_submit_button("Submit Data")
     if submitted:
-        if type(confirmSong(theArtist, theSong)) == str:
+        if type(confirmSong(theArtist, theSong)) == str or confirmSong(theArtist, theSong):
             st.write(confirmSong(theArtist, theSong))
         else:
             inputArtist = confirmSong(theArtist, theSong)["artist"]
