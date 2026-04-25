@@ -34,7 +34,6 @@ def topArtists(country, genre):
         addBaseCountryurl = baseUrl + "/?method=geo.gettopartists=" + urlCountry
         endpoint1 = addBaseCountryurl + "&api_key=" + apiKey + "&format=json"
         response1 = requests.get(endpoint1)
-
         data1 = response1.json()
         countryGetArtist = []
         for a in data1["topartists"]["artist"]:
@@ -42,7 +41,9 @@ def topArtists(country, genre):
 
         urlGenre = genre.replace(" ", "+")
         addBaseGenreurl = baseUrl + "/?method=tag.gettopartists=" + urlGenre
-        endpoint2 = addBaseGenre
+        endpoint2 = addBaseGenreurl + "&api_key=" + apiKey + "&format=json"
+        response2 = requests.get(endpoint2)
+        data2 = response2.json
 
         
         use geo.getTopArtists and tag.getTopArtists
