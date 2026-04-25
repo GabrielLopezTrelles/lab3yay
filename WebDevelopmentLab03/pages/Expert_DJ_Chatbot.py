@@ -3,7 +3,6 @@ import google.generativeai as genai
 import requests
 baseUrl = "http://ws.audioscrobbler.com/2.0"
 apiKey = "a28edaddcd62a1f9f8ae8100299fbc3b"
-    st.image("images/epicMix.jpg", width=500)
 
 
 def musicData():
@@ -59,6 +58,8 @@ genai.configure(api_key = key)
 
 st.title("Expert Music Chatbot")
 st.markdown("Ask me anything about music. Your question can be about artists, genres, history, recommendations, and more!")
+st.image("WebDevelopmentLab03/images/epicMix.jpg", width=500)
+
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
