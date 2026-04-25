@@ -22,7 +22,7 @@ with st.form("survey_form"):
     ###Confirm Song Function:
 
     def confirmSong(theArtist, theSong):
-        addBaseArtisturl = baseUrl + "method=track.search"
+        addBaseArtisturl = baseUrl + "?method=track.search"
         trackk = theSong.replace(" ", "+")
         artistt = theArtist.replace(" ", "+")
         if artistt != None:
