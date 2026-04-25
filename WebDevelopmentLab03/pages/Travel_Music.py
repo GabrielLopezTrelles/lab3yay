@@ -7,72 +7,55 @@ key = st.secrets["key"]
 
 genai.configure(api_key = key)
 
-st.title("Music Chatbot")
-st.markdown("Ask me anything about music. Your question can be about artists, genres, history, recommendations, and more!")
+st.title("Travel Music")
+st.markdown("This is your one-stop shop for understanding the music taste in the countries you're traveling to!")
+model = genai.GenerativeModel("gemini-3-flash-preview")
 
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+country = st.selectbox("What country are you visiting?", [
+    "AFGHANISTAN", "ALBANIA", "ALGERIA", "AMERICAN SAMOA", "ANDORRA","ANGOLA","ANGUILLA","ARGENTINA","ARMENIA",	"ARUBA","AUSTRALIA","AUSTRIA","AZERBAIJAN","BAHAMAS","BAHRAIN","BANGLADESH","BARBADOS","BELARUS","BELGIUM","BELIZE","BENIN","BERMUDA","BHUTAN",	"BOLIVIA, PLURINATIONAL STATE OF","BOSNIA AND HERZEGOVINA","BOTSWANA","BRAZIL","BRUNEI DARUSSALAM",	"BULGARIA","BURKINA FASO","BURUNDI","CAMBODIA","CAMEROON","CANADA","CABO VERDE","CENTRAL AFRICAN REPUBLIC","CHAD","CHILE","CHINA","COLOMBIA","COMOROS","CONGO","CONGO, THE DEMOCRATIC REPUBLIC OF THE","COOK ISLANDS","COSTA RICA","CROATIA","CUBA","CYPRUS","CZECHIA","DENMARK","DJIBOUTI","DOMINICA","DOMINICAN REPUBLIC","ECUADOR","EGYPT","EL SALVADOR","EQUATORIAL GUINEA","ERITREA","ESTONIA","ETHIOPIA","FALKLAND ISLANDS (MALVINAS)","FAROE ISLANDS","FIJI","FINLAND","FRANCE","GABON","GAMBIA","GEORGIA","GERMANY","GHANA","GIBRALTAR","GREECE","GREENLAND","GRENADA","GUAM","GUATEMALA","GUINEA","GUINEA-BISSAU","GUYANA","HAITI","HONDURAS","HONG KONG","HUNGARY","ICELAND","INDIA","INDONESIA","IRAN, ISLAMIC REPUBLIC OF","IRAQ","IRELAND","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KAZAKHSTAN","KENYA","KIRIBATI","KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF","KOREA, REPUBLIC OF","KUWAIT","KYRGYZSTAN","LAO PEOPLE'S DEMOCRATIC REPUBLIC","LATVIA","LEBANON","LESOTHO","LIBERIA","LIBYA","LIECHTENSTEIN","LITHUANIA","LUXEMBOURG",	"MADAGASCAR","MALAWI","MALAYSIA","MALDIVES","MALI","MALTA","MARSHALL ISLANDS","MAURITANIA","MAURITIUS",	"MEXICO","MICRONESIA, FEDERATED STATES OF","MOLDOVA, REPUBLIC OF","MONACO","MONGOLIA","MONTENEGRO","MOROCCO","MOZAMBIQUE","MYANMAR","NAMIBIA","NAURU","NEPAL","NETHERLANDS","NEW ZEALAND","NICARAGUA","NIGER","NIGERIA","NORWAY","OMAN","PAKISTAN","PALAU","PALESTINE, STATE OF","PANAMA","PAPUA NEW GUINEA","PARAGUAY","PERU","PHILIPPINES","POLAND","PORTUGAL","PUERTO RICO","QATAR","ROMANIA","RUSSIAN FEDERATION","RWANDA","SAINT KITTS AND NEVIS","SAINT LUCIA","SAINT VINCENT AND THE GRENADINES","SAMOA","SAN MARINO","SAO TOME AND PRINCIPE","SAUDI ARABIA","SENEGAL","SERBIA","SEYCHELLES","SIERRA LEONE","SINGAPORE","SLOVAKIA","SLOVENIA","SOLOMON ISLANDS","SOMALIA","SOUTH AFRICA","SPAIN","SRI LANKA","SUDAN","SURINAME","SWAZILAND","SWEDEN","SWITZERLAND","SYRIAN ARAB REPUBLIC","TAJIKISTAN","TANZANIA, UNITED REPUBLIC OF","THAILAND","TIMOR-LESTE","TOGO","TONGA","TRINIDAD AND TOBAGO","TUNISIA","TURKEY","TURKMENISTAN",	TM
+224	TURKS AND CAICOS ISLANDS	TC
+225	TUVALU	TV
+226	UGANDA	UG
+227	UKRAINE	UA
+228	UNITED ARAB EMIRATES	AE
+229	UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND	GB
+230	UNITED STATES OF AMERICA	US
+231	UNITED STATES MINOR OUTLYING ISLANDS	UM
+232	URUGUAY	UY
+233	UZBEKISTAN	UZ
+234	VANUATU	VU
+235	HOLY SEE	VA
+236	VENEZUELA, BOLIVARIAN REPUBLIC OF	VE
+237	VIET NAM	VN
+238	VIRGIN ISLANDS, BRITISH	VG
+239	VIRGIN ISLANDS, U.S.	VI
+240	WALLIS AND FUTUNA	WF
+241	WESTERN SAHARA	EH
+242	YEMEN	YE
+243	ZAMBIA	ZM
+244	ZIMBABWE	ZW
+245	SOUTH SUDAN	SS
+246	SAINT BARTHÉLEMY	BL
+247	BONAIRE, SINT EUSTATIUS AND SABA	BQ
+248	CURAÇAO	CW
+249	SAINT MARTIN (FRENCH PART)	MF
+250	SINT MAARTEN (DUTCH PART)	SX
+], index=None)
+genre = st.selectbox("What genre of music do you enjoy?", [], index=None)
 
-if "chat_session" not in st.session_state:
-    model = genai.GenerativeModel(
-        model_name="gemini-2.5-flash",
-        system_instruction="""You are Music Chatbot, an expert AI assistant who knows 
-        everything about music. You can discuss artists, albums, song history, genres, 
-        music theory, concert experiences, music recommendations, and the music industry. 
-        Keep your responses conversational, engaging, and informative. 
-        Don't look up real-time data or streaming stats — focus on knowledge-based 
-        music discussion."""
-    )
-    st.session_state.chat_session = model.start_chat(history=[])
+try:
+    response = model.generate_content("Write a poem about how learning web development is fun!") #enter your prompt here!
+    st.write(response.text)
 
-for message in st.session_state.chat_history:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+except Exception as e:
+    error_message = str(e).lower()
 
-user_input = st.chat_input("Ask me about music...")
-
-if user_input:
-    with st.chat_message("user"):
-        st.markdown(user_input)
-
-    st.session_state.chat_history.append({
-        "role": "user",
-        "content": user_input
-    })
-
-    try:
-        response = st.session_state.chat_session.send_message(user_input)
-        assistant_reply = response.text
-
-    except Exception as e:
-        error_message = str(e).lower()
-
-        if "quota" in error_message or "rate" in error_message or "429" in error_message:
-            assistant_reply = f"FULL ERROR: {e}"
-        elif "safety" in error_message or "blocked" in error_message:
-            assistant_reply = "Error. I can't respond to that topic. Try asking me something else about music!"
-        else:
-            assistant_reply = f"Error. Something went wrong. Please try again. (Error: {str(e)})"
+    if "quota" in error_message or "rate" in error_message or "429" in error_message:
+        assistant_reply = f"FULL ERROR: {e}"
+    elif "safety" in error_message or "blocked" in error_message:
+        assistant_reply = "Error. I can't respond to that topic. Try asking me something else about music!"
+    else:
+        assistant_reply = f"Error. Something went wrong. Please try again. (Error: {str(e)})"
 
     with st.chat_message("assistant"):
         st.markdown(assistant_reply)
-
-    st.session_state.chat_history.append({
-        "role": "assistant",
-        "content": assistant_reply
-    })
-
-if st.session_state.chat_history:
-    if st.button("Clear Chat"):
-        st.session_state.chat_history = []
-        model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash",
-            system_instruction="""You are Music Guru, an expert AI assistant who knows 
-            everything about music. You can discuss artists, albums, song history, genres, 
-            music theory, concert experiences, music recommendations, and the music industry. 
-            Keep your responses conversational, engaging, and informative.
-            You do NOT look up real-time data or streaming stats — focus on knowledge-based 
-            music discussion."""
-        )
-        st.session_state.chat_session = model.start_chat(history=[])
-        st.rerun()
