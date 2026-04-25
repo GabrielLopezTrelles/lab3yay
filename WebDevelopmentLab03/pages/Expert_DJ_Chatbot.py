@@ -58,7 +58,7 @@ genai.configure(api_key = key)
 
 st.title("Expert Music Chatbot")
 st.markdown("Ask me anything about music. Your question can be about artists, genres, history, recommendations, and more!")
-st.image("WebDevelopmentLab03/images/epicMix.jpg", width=500)
+st.image("WebDevelopmentLab03/images/epicMix.jpg")
 
 
 if "chat_history" not in st.session_state:
