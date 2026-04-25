@@ -4,7 +4,7 @@ import requests
 #Goal: box that you input artist and you get similar artists and input song and you get similar songs
 
 st.title("DJ Helper")
-st.image("/workspaces/lab3yay/WebDevelopmentLab03/images/Bad_Bunny.png")
+st.image("/workspaces/lab3yay/WebDevelopmentLab03/images/DJ_Helper.png")
 st.write("Welcome to DJ Helper! Enter a song and we will return a list of similar songs and similar artists to jumpstart your mixes! Customize artists and song popularity. We will do the rest!")
 
 
