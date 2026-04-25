@@ -36,7 +36,10 @@ def topArtists(country, genre):
         response1 = requests.get(endpoint1)
 
         data1 = response1.json()
-        countryGetArtist = data[]
+        countryGetArtist = []
+        for a in data1["topartists"]["artist"]:
+            countryGetArtist.append(a["name"])
+
         
         use geo.getTopArtists and tag.getTopArtists
 
