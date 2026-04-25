@@ -44,9 +44,6 @@ def topArtists(country, genre):
         response2 = requests.get(endpoint2)
         data2 = response2.json
 
-        
-        use geo.getTopArtists and tag.getTopArtists
-
 
 try:
     response = model.generate_content(f"Write a guide to listening to music in the genre {genre} while on vacation in the country {country}. Recommend these top artists to listen to and why based on this API data: {topArtists}"
