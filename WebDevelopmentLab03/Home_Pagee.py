@@ -23,7 +23,7 @@ Welcome to our Streamlit Web Development Lab03 app! You can navigate between the
 
 1. **DJ Chatbot**: Chat with our AI assistant about music!
 2. **DJ Helper**: Are you a DJ in dire need of help? Our DJ Helper generates similar songs so you can find that perfect mix!
-3. **Expert DJ Cha
+3. **Expert DJ Chatbot**:
 
 """)
 
