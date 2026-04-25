@@ -55,10 +55,10 @@ with st.form("survey_form"):
         except:
             return "Sorry, the country you entered likely doesn't have listeners right now."
     submitted = st.form_submit_button("Submit Data")
-    
+
     if submitted:
         try:
-            response = model.generate_content(f"Write a guide to listening to music in the genre {genre} while on vacation in the country {country}. Recommend these top artists to listen to and why based on this API data: {topArtists(country, genre)}")
+            response = model.generate_content(f"Write a guide to listening to music in the genre {genre} while on vacation in the country {country}. If possible, recommend these top artists to listen to and why based on this API data: {topArtists(country, genre)}")
             st.write(response.text)
 
         except Exception as e:
