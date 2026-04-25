@@ -23,8 +23,8 @@ Welcome to our Streamlit Web Development Lab03 app! You can navigate between the
 
 1. **DJ Chatbot**: Chat with our AI assistant about music!
 2. **DJ Helper**: Are you a DJ in dire need of help? Our DJ Helper generates similar songs so you can find that perfect mix!
-3. **Expert DJ Chatbot**:
-4. **Travel Music**:
+3. **Expert DJ Chatbot**: Chat with our AI assistant about music, but this time it's an expert DJ! Ask for mix recommendations, song suggestions, and more!
+4. **Travel Music**: Are you going to Aruba? Or maybe Puerto Rico? Either way, if you want to get to know the artists that dominate your favorite genres in these places, this is the page to go to!
 
 """)
 

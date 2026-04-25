@@ -5,7 +5,7 @@ import requests
 
 st.title("DJ Helper")
 st.write("Welcome to DJ Helper! Enter a song and we will return a list of similar songs and similar artists to jumpstart your mixes! Customize artists and song popularity. We will do the rest!")
-
+st.image("images/badbunnyeye.jpg", width=500)
 
 #Base URL and API Key
 
