@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+import requests
 baseUrl = "http://ws.audioscrobbler.com/2.0"
 apiKey = "a28edaddcd62a1f9f8ae8100299fbc3b"
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
