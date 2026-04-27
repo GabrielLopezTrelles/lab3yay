@@ -12,7 +12,6 @@ genai.configure(api_key = key)
 st.title("Travel Music")
 st.markdown("This is your one-stop shop for understanding the music taste in the countries you're traveling to!")
 st.image("WebDevelopmentLab03/images/lemondemon.jpg", width=300)
-model = genai.GenerativeModel("gemini-2.5-flash")
 
 with st.form("survey_form"):
     country = st.selectbox("What country are you visiting?", [
